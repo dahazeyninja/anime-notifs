@@ -1,0 +1,27 @@
+{
+  "name": "anime-notifs",
+  "version": "1.0.0",
+  "description": "A discord bot that notifies you when an anime airs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dahazeyninja/anime-notifs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dahazeyninja/anime-notifs/issues"
+  },
+  "homepage": "https://github.com/dahazeyninja/anime-notifs#readme",
+  "dependencies": {
+    "anilist-node": "^1.2.2",
+    "discord.js": "^11.5.1",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
