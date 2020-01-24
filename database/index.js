@@ -8,15 +8,11 @@ db.serialize(function(){
 		if(err) console.error(err);
 	});
 
-	db.run('CREATE TABLE IF NOT EXISTS `shows` (`name` TEXT, `MALID` INTEGER, `ANNID` INTEGER, ALID INTEGER, `name_lower` TEXT, `simulcast` TEXT, `simulcast_delay` TEXT, `airdate_u` INTEGER, `season` TEXT, PRIMARY KEY(`name`))', (err)=>{
-		if(err) console.error(err);
-	});
-	
-	db.run('CREATE TABLE IF NOT EXISTS `episodes` (`name` TEXT, `ep` INTEGER, `time` INTEGER, PRIMARY KEY(`name`,`ep`,`time`))', (err)=>{
+	db.run('CREATE TABLE IF NOT EXISTS `senpai` (`name` TEXT, `MALID` INTEGER, `ANNID` INTEGER, ALID INTEGER, `name_lower` TEXT, `simulcast` TEXT, `simulcast_delay` TEXT, `airdate_u` INTEGER, `season` TEXT, PRIMARY KEY(`name`))', (err)=>{
 		if(err) console.error(err);
 	});
 
-	db.run('CREATE TABLE IF NOT EXISTS `ALdata` (`id` INTEGER, `idMal` INTEGER, `title_r` TEXT, `title_e` TEXT, `title_n` TEXT, `startDate` TEXT, `endDate` TEXT, `episodes` INTEGER, `season` TEXT, `description` TEXT, `coverImage` TEXT, `genres` TEXT, `tags` TEXT, `nextAiringAt` INTEGER, PRIMARY KEY(`id`))', (err)=>{
+	db.run('CREATE TABLE IF NOT EXISTS `anilist` (`id` INTEGER, `idMal` INTEGER, `title_r` TEXT, `title_e` TEXT, `title_n` TEXT, `startDate` TEXT, `endDate` TEXT, `episodes` INTEGER, `season` TEXT, `description` TEXT, `coverImage` TEXT, `genres` TEXT, `tags` TEXT, `nextAiringEp` INTEGER, `nextAiringAt INTEGER, PRIMARY KEY(`id`))', (err)=>{
 		if(err) console.error(err);
 	});
 
