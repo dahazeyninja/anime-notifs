@@ -34,7 +34,7 @@ module.exports = async function updateShows(message, database){
 
 			items.forEach((item)=>{
 				// console.log(`INSERT OR REPLACE INTO 'shows' (name, MALID, ANNID, simulcast, simulcast_delay, airdate_u) VALUES(${item.name},${item.MALID},${item.ANNID},${item.simulcast},${item.simulcast_delay},${item.airdate_u})`);
-				db.run('INSERT INTO `shows` (name, MALID, ANNID, ALID, name_lower, simulcast, simulcast_delay, airdate_u, season) VALUES(?,?,?,?,?,?,?,?,?);', [
+				db.run('INSERT INTO `senpai` (name, MALID, ANNID, ALID, name_lower, simulcast, simulcast_delay, airdate_u, season) VALUES(?,?,?,?,?,?,?,?,?);', [
 					item.name,
 					item.MALID,
 					item.ANNID,
@@ -63,7 +63,7 @@ function updateExistingShow(item, meta, message){
 	let values = [];
 	let old_values = [];
 	let update = 0;
-	db.get('SELECT * FROM `shows` WHERE name = ?;', item.name, (err, row)=>{
+	db.get('SELECT * FROM `senpai` WHERE name = ?;', item.name, (err, row)=>{
 		if(err) return console.error(err);
 
 		if(item.MALID != row.MALID){
@@ -118,7 +118,7 @@ function updateExistingShow(item, meta, message){
 		}
 
 		// console.log(`UPDATE shows SET ${column_string} WHERE name = ?;`, values);
-		db.run(`UPDATE shows SET ${column_string} WHERE name = ?;`, values, (err)=>{
+		db.run(`UPDATE senpai SET ${column_string} WHERE name = ?;`, values, (err)=>{
 			if(err) return console.error(err);
 
 			console.log(`${getDate()} Updated show "${item.name}" columns\n${JSON.stringify(columns, null, '\t')}\nfrom\n${JSON.stringify(old_values, null, '\t')}\nto\n${JSON.stringify(values, null, '\t')}`);
@@ -143,14 +143,14 @@ function updateExistingTimezone(tz){
 
 function updateAniListData(){
 	const interval = setInterval(()=>{
-		db.get('SELECT MALID FROM `shows` WHERE ALID = 0;', (err, row)=>{
+		db.get('SELECT MALID FROM `senpai` WHERE ALID = 0;', (err, row)=>{
 			if(err) return console.error(err);
 
 			if(!row){
 				console.log(`${getDate()} No more shows missing Anilist data`);
 				return clearInterval(interval);
 			}
-			
+
 			updateAnilist(row.MALID, db);
 		});
 	}, 2000);
